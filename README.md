@@ -1,2 +1,2 @@
 # Asclepius
-Asclepius is your personal open-source health assistant
+Open-source health assistant
