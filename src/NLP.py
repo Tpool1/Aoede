@@ -3,7 +3,6 @@ from nltk.corpus import stopwords, wordnet
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 
-import json
 import random
 
 from speech_txt_conv import recorder, sph_txt, txt_sph
