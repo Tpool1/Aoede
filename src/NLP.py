@@ -104,23 +104,38 @@ class NLP:
         # remove line breakers throughout var list
         var_list = self.remove_breaks(var_list)
         
-        # check if a variable name is inside of text
-        for var in var_list: 
-            if var in list(self.tags.values()): 
-                self.variable = var
-                break
-            else: 
-                self.variable = "My apologies, what is the variable you speak of?"
-                self.play_text(self.variable)
+        var_found = False
+        while not var_found: 
+            # check if a variable name is inside of text
+            for var in var_list: 
+                if var in list(self.tags.values()): 
+                    self.variable = var
+                    var_found = True
+                    break
+                else: 
+                    var_found = False
+                    self.variable = "My apologies, what is the variable you speak of?"
+                    
+            self.play_text(self.variable)
 
-        # identify numerical values in text for var value
-        for var in self.tags.values(): 
-            if var.isnumeric(): 
-                self.value = var
-                break
-            else: 
-                self.value = "Pardon me, what is the value for this variable?"
-                self.play_text(self.value)
+        self.respond()
+
+        val_found = False
+        while not val_found:
+
+            # identify numerical values in text for var value
+            for var in self.tags.values(): 
+                if var.isnumeric(): 
+                    self.value = var
+                    val_found = True
+                    break
+                else:
+                    val_found = False
+                    self.value = "Pardon me, what is the value for this variable?"
+                
+            self.play_text(self.value)
+        
+        self.respond()
 
         # identify unit by checking in units.txt
         f = open("src\\data\\units.txt")
@@ -128,13 +143,21 @@ class NLP:
 
         unit_list = self.remove_breaks(unit_list)
 
-        for unit in unit_list: 
-            if unit in self.tags.values():
-                self.val_unit = unit
-                break
-            else: 
-                self.val_unit = "I am sorry. I could not identify the unit. Please try again."
-                self.play_text(self.val_unit)
+        unit_found = False
+        while not unit_found:
+
+            for unit in unit_list: 
+                if unit in self.tags.values():
+                    self.val_unit = unit
+                    unit_found = True
+                    break
+                else: 
+                    unit_found = False
+                    self.val_unit = "I am sorry. I could not identify the unit. Please try again."
+                
+            self.play_text(self.val_unit)
+        
+        self.respond()
 
     def respond(self):
 
@@ -151,5 +174,4 @@ class NLP:
         self.stem()
         self.tag()
         self.get_info()
-        self.respond()
     
