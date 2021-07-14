@@ -4,6 +4,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 
 import random
+import os
 
 from speech_txt_conv import recorder, sph_txt, txt_sph
 
@@ -88,6 +89,19 @@ class NLP:
         
         return val_list
 
+    def get_model(self):
+        # identify model
+
+        model_list = os.listdir("src/plugins")
+        print(model_list)
+
+        self.play_text("Which model will we be using today?")
+        self.get_message()
+        self.partition()
+        self.filterStops()
+        self.stem()
+        self.tag()
+
     def get_info(self): 
         # identify variable, value, and unit
 
@@ -167,10 +181,6 @@ class NLP:
         self.play_text(aff_choice)
 
     def run(self): 
-        self.get_message()
-        self.partition()
-        self.filterStops()
-        self.stem()
-        self.tag()
+        self.get_model()
         self.get_info()
     
