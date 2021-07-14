@@ -21,52 +21,62 @@ class NLP:
 
         conv = sph_txt(r.file_name)
         conv.translate()
-        self.text = conv.text
+        text = conv.text
+        
+        text = text.lower()
+
+        return text
 
     # function to partition text into sentences, words, etc 
-    def partition(self): 
+    def partition(self, text): 
 
         # separate sentences 
-        self.text = sent_tokenize(self.text)
+        text = sent_tokenize(text)
 
         # get list of words for each sentence
         word_sent_list = []
-        for sent in self.text: 
+        for sent in text: 
 
             # get list of words 
-            self.text = word_tokenize(sent)
+            text = word_tokenize(sent)
 
-            word_sent_list.append(self.text)
+            word_sent_list.append(text)
 
-        self.text = word_sent_list
+        text = word_sent_list
+
+        return text
 
     # function that filters out stopwords (an, in, is, etc.)
-    def filterStops(self):
+    def filterStops(self, text):
 
         stops = set(stopwords.words("english"))
-        self.filtered_list = []
-        for sent in self.text: 
+        filtered_list = []
+        for sent in text: 
             for word in sent: 
                 if word.casefold() not in stops: 
-                    self.filtered_list.append(word)
+                    filtered_list.append(word)
+
+        return filtered_list
 
     # function to extract primitive meaning of words
-    def stem(self):
+    def stem(self, filtered_list):
         stemmer = WordNetLemmatizer()
         
-        self.stemmed_words = []
-        for word in self.filtered_list: 
+        stemmed_words = []
+        for word in filtered_list: 
             stem_word = stemmer.lemmatize(word)
-            self.stemmed_words.append(stem_word)
+            stemmed_words.append(stem_word)
+
+        return stemmed_words
 
     # function to classify different parts of the text
-    def tag(self):
-        self.tags = nltk.pos_tag(self.stemmed_words)
+    def tag(self, stemmed_words):
+        tags = nltk.pos_tag(stemmed_words)
 
         # convert list of tuples to dict
         i = 0 
         tag_dict = {}
-        for tup in self.tags: 
+        for tup in tags: 
             word = tup[0]
             tag = tup[1]
 
@@ -78,7 +88,9 @@ class NLP:
 
             i = i + 1 
 
-        self.tags = tag_dict
+        tags = tag_dict
+
+        return tags
 
     def remove_breaks(self, val_list):
         i = 0
@@ -93,20 +105,45 @@ class NLP:
         # identify model
 
         model_list = os.listdir("src/plugins")
-        print(model_list)
 
-        self.play_text("Which model will we be using today?")
-        self.get_message()
-        self.partition()
-        self.filterStops()
-        self.stem()
-        self.tag()
+        i = 0
+        for model in model_list:
+            model = model.lower()
+            model_list[i] = model
+            i = i + 1
+
+        model_found = False
+        while not model_found:
+            self.play_text("Which model will we be using today?")
+            response = self.get_message()
+            response = self.partition(response)
+            filtered_list = self.filterStops(response)
+            filtered_list = self.stem(filtered_list)
+            tags = self.tag(filtered_list)
+            
+            # check if a model name is inside text
+            for model in model_list:
+                if model in list(tags.values()):
+                    model_found = True
+                    model_use = model
+                    break
+                else:
+                    model_found = False
+                    err = "Sorry, I can't find that. Maybe I misunderstood."
+                    self.play_text(err)
 
     def get_info(self): 
         # identify variable, value, and unit
 
+        self.play_text("Tell me about the patient now")
+        response = self.get_message()
+        response = self.partition(response)
+        filtered_list = self.filterStops(response)
+        filtered_list = self.stem(filtered_list)
+        tags = self.tag(filtered_list)
+
         NN_keys = []
-        for key in self.tags.keys(): 
+        for key in tags.keys(): 
             if key[:2] == 'NN': 
                 NN_keys.append(key)
 
@@ -121,7 +158,7 @@ class NLP:
         while not var_found: 
             # check if a variable name is inside of text
             for var in var_list: 
-                if var in list(self.tags.values()): 
+                if var in list(tags.values()): 
                     self.variable = var
                     var_found = True
                     break
@@ -137,7 +174,7 @@ class NLP:
         while not val_found:
 
             # identify numerical values in text for var value
-            for var in self.tags.values(): 
+            for var in tags.values(): 
                 if var.isnumeric(): 
                     self.value = var
                     val_found = True
@@ -160,7 +197,7 @@ class NLP:
         while not unit_found:
 
             for unit in unit_list: 
-                if unit in self.tags.values():
+                if unit in tags.values():
                     self.val_unit = unit
                     unit_found = True
                     break
