@@ -101,6 +101,49 @@ class NLP:
         
         return val_list
 
+    def get_function(self):
+        # identify what user wants to do
+
+        greetings = ["Hello. What can I help you with today?", "How can I assist you?", "What's up?"]
+        possible_tasks = ["model", "chat"]
+
+        greet_choice = random.choice(greetings)
+
+        self.play_text(greet_choice)
+
+        task_found = False
+        while not task_found:
+            audio_received = False
+            while not audio_received:
+                try:
+                    response = self.get_message()
+                    response = self.partition(response)
+                    filtered_list = self.filterStops(response)
+                    filtered_list = self.stem(filtered_list)
+                    tags = self.tag(filtered_list)
+                    audio_received = True
+                except:
+                    self.play_text("I am having trouble hearing you. Please try again.")
+
+            # check if task name is inside of tags
+            for tag in list(tags.values()):
+                if tag in possible_tasks:
+                    task = tag
+                    task_found = True
+
+            if not task_found:
+                self.play_text("I cannot identify what you want to do. Try again.")
+
+            if task == "model":
+                self.use_model = True
+            else:
+                self.use_model = False
+
+            if task == "chat":
+                self.use_chat = True
+            else:
+                self.use_chat = False
+
     def get_model(self):
         # identify model
 
@@ -237,6 +280,10 @@ class NLP:
         self.play_text(aff_choice)
 
     def run(self): 
-        self.get_model()
-        self.get_info()
+        self.get_function()
+
+        if self.use_model: 
+            self.get_model()
+            self.get_info()
+
     
