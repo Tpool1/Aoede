@@ -1,0 +1,6 @@
+age
+smoking status
+smoking time
+chemotherapy status
+cancer surgery performed status
+radiotherapy treatment time

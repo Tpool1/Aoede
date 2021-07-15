@@ -122,21 +122,27 @@ class NLP:
             tags = self.tag(filtered_list)
             
             # check if a model name is inside text
+            i = 0
             for model in model_list:
 
                 # remove .py extension
                 model = model[:-3]
+                
+                model_list[i] = model
 
-                print(model)
-                print(list(tags.values()))
-                if model in list(tags.values()):
+                i = i + 1
+
+            i = 0
+            for tag in list(tags.values()):
+                if tag in model_list:
                     model_found = True
-                    model_use = model
-                    break
-                else:
-                    model_found = False
-                    err = "Sorry, I can't find that. Maybe I misunderstood."
-                    self.play_text(err)
+                    model_use = model_list[i]
+
+                i = i + 1
+            
+            if not model_found: 
+                err = "Sorry, I can't find that. Maybe I misunderstood."
+                self.play_text(err)
 
     def get_info(self): 
         # identify variable, value, and unit
