@@ -114,12 +114,19 @@ class NLP:
 
         model_found = False
         while not model_found:
+            audio_received = False
             self.play_text("Which model will we be using today?")
-            response = self.get_message()
-            response = self.partition(response)
-            filtered_list = self.filterStops(response)
-            filtered_list = self.stem(filtered_list)
-            tags = self.tag(filtered_list)
+
+            while not audio_received:
+                try:
+                    response = self.get_message()
+                    response = self.partition(response)
+                    filtered_list = self.filterStops(response)
+                    filtered_list = self.stem(filtered_list)
+                    tags = self.tag(filtered_list)
+                    audio_received = True
+                except:
+                    self.play_text("I can't hear you. Try again.")
             
             # check if a model name is inside text
             i = 0
