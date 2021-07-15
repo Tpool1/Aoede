@@ -5,10 +5,9 @@ nlp_engine = NLP()
 
 nlp_engine.run()
 
-# temporary files to be deleted after program runs
-rm_files = ["bot_recording.mp3", "bot_recording0.mp3", "bot_recording01.mp3", 
-            "bot_recording012.mp3", "bot_recording0123.mp3", "bot_recording01234.mp3", 
-            "user_recording.wav"]
+# delete temporary audio files after running
+dir_list = os.listdir("../Asclepius")
 
-for file in rm_files:
-    os.remove(file)
+for file in dir_list:
+    if file[-4:] == ".wav" or file[-4:] == ".mp3":
+        os.remove(file)

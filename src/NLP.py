@@ -123,6 +123,12 @@ class NLP:
             
             # check if a model name is inside text
             for model in model_list:
+
+                # remove .py extension
+                model = model[:-3]
+
+                print(model)
+                print(list(tags.values()))
                 if model in list(tags.values()):
                     model_found = True
                     model_use = model
@@ -148,7 +154,7 @@ class NLP:
                 NN_keys.append(key)
 
         # read list of possible variables 
-        f = open("src\\data\\variables.txt")
+        f = open("data\\variables.txt")
         var_list = f.readlines()
 
         # remove line breakers throughout var list
@@ -188,7 +194,7 @@ class NLP:
         self.respond()
 
         # identify unit by checking in units.txt
-        f = open("src\\data\\units.txt")
+        f = open("data\\units.txt")
         unit_list = f.readlines()
 
         unit_list = self.remove_breaks(unit_list)
