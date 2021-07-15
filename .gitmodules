@@ -1,6 +1,0 @@
-[submodule "Soteria"]
-	path = src/plugins/Soteria
-	url = https://github.com/Tpool1/Soteria.git
-[submodule "Cancer_ML"]
-	path = src/plugins/Cancer_ML
-	url = https://github.com/Tpool1/Cancer_ML.git
