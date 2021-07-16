@@ -6,6 +6,7 @@ from nltk.stem import WordNetLemmatizer
 import random
 import os
 
+from plugins.get_time import get_time
 from speech_txt_conv import recorder, sph_txt, txt_sph
 
 class NLP: 
@@ -133,16 +134,16 @@ class NLP:
 
             if not task_found:
                 self.play_text("I cannot identify what you want to do. Try again.")
-
-            if task == "model":
-                self.use_model = True
             else:
-                self.use_model = False
+                if task == "model":
+                    self.use_model = True
+                else:
+                    self.use_model = False
 
-            if task == "chat":
-                self.use_chat = True
-            else:
-                self.use_chat = False
+                if task == "chat":
+                    self.use_chat = True
+                else:
+                    self.use_chat = False
 
     def chat(self):
         pass
@@ -150,7 +151,7 @@ class NLP:
     def get_model(self):
         # identify model
 
-        model_list = os.listdir("src/plugins")
+        model_list = os.listdir("src/models")
 
         i = 0
         for model in model_list:
