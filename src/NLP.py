@@ -144,6 +144,9 @@ class NLP:
             else:
                 self.use_chat = False
 
+    def chat(self):
+        pass
+
     def get_model(self):
         # identify model
 
@@ -283,7 +286,14 @@ class NLP:
         self.get_function()
 
         if self.use_model: 
+
             self.get_model()
             self.get_info()
+
+        elif self.chat:
+
+            # have casual conversation until user is ready to run something else
+            while not self.use_model:
+                self.chat()
 
     
