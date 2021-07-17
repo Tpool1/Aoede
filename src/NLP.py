@@ -147,6 +147,7 @@ class NLP:
                     self.use_chat = False
 
     def chat(self):
+
         while not self.use_model:
             self.play_text("Is there something additional I can help you with?")
             audio_received = False
@@ -168,6 +169,21 @@ class NLP:
             for plugin in plugins_list:
                 if plugin in ignore_files:
                     plugins_list.remove(plugin)
+
+            i = 0
+            for plugin in plugins_list:
+                plugin = plugin.replace('_', ' ')
+                plugins_list[i] = plugin
+                i = i + 1
+
+            plugin_found = False
+            while not plugin_found:
+                for tag in list(tags.values()):
+                    if tag in plugins_list:
+                        plugin = tag
+                        plugin_found = True
+                    else:
+                        self.play_text("Sorry, I do not think I can do that right now. Try something else.")
 
     def get_model(self):
         # identify model
