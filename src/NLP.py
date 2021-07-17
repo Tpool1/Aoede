@@ -296,5 +296,3 @@ class NLP:
             # have casual conversation until user is ready to run something else
             while not self.use_model:
                 self.chat()
-
-    
