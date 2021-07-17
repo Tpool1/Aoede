@@ -146,7 +146,19 @@ class NLP:
                     self.use_chat = False
 
     def chat(self):
-        pass
+        while not self.use_model:
+            self.play_text("Is there something additional I can help you with?")
+            audio_received = False
+            while not audio_received:
+                try:
+                    response = self.get_message()
+                    response = self.partition(response)
+                    filtered_list = self.filterStops(response)
+                    filtered_list = self.stem(filtered_list)
+                    tags = self.tag(filtered_list)
+                    audio_received = True
+                except:
+                    self.play_text("I am having trouble hearing you. Please try again.")
 
     def get_model(self):
         # identify model
