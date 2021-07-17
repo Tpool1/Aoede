@@ -6,6 +6,7 @@ from nltk.stem import WordNetLemmatizer
 import random
 import os
 
+import plugins
 from plugins.get_time import get_time
 from speech_txt_conv import recorder, sph_txt, txt_sph
 
@@ -159,6 +160,14 @@ class NLP:
                     audio_received = True
                 except:
                     self.play_text("I am having trouble hearing you. Please try again.")
+
+            # check if word matches in a title of a plugin
+            ignore_files = ['__init__.py', '__pycache__']
+            plugins_list = os.listdir('src/plugins')
+
+            for plugin in plugins_list:
+                if plugin in ignore_files:
+                    plugins_list.remove(plugin)
 
     def get_model(self):
         # identify model
