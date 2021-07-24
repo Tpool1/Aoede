@@ -1,9 +1,12 @@
-from NLP import NLP
+import speech_recognition as sr
 import os
+from get_input import get_input
+from play_text import play_text
+from nlp_tools import *
+from core import core
 
-nlp_engine = NLP()
-
-nlp_engine.run()
+assistant = core()
+assistant.run()
 
 # delete temporary audio files after running
 dir_list = os.listdir("../Asclepius")
