@@ -11,3 +11,4 @@ def filterStops(text):
                 filtered_list.append(word)
 
     return filtered_list
+    

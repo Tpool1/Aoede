@@ -6,3 +6,4 @@ def remove_breaks(self, val_list):
         i = i + 1 
     
     return val_list
+    

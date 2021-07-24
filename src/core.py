@@ -7,12 +7,15 @@ from play_text import play_text
 from get_input import get_input
 import random
 
+from models.cancer_ml import cancer_ml
+from models.soteria import soteria
+
 class core:
 
     def initialize(self):
 
         # determine dictionary of possible tasks with their corresponding functions
-        self.possible_tasks = {'cpu': get_cpu_load, 'time': get_time}
+        self.possible_tasks = {'cpu': get_cpu_load, 'time': get_time, 'soteria': soteria, 'cancer': cancer_ml}
 
         greetings = ["Hello. What can I help you with today?", "How can I assist you?", "What's up?"]
         greet_choice = random.choice(greetings)
@@ -44,3 +47,4 @@ class core:
     def run(self):
         self.initialize()
         self.get_function()
+        

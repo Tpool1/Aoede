@@ -18,3 +18,4 @@ def partition(text):
     text = word_sent_list
 
     return text
+    

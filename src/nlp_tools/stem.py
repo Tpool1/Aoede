@@ -10,3 +10,4 @@ def stem(filtered_list):
         stemmed_words.append(stem_word)
 
     return stemmed_words
+    

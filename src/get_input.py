@@ -12,3 +12,4 @@ def get_input():
     text = r.recognize_google(audio)
 
     return text
+    
