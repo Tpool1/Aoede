@@ -1,5 +1,6 @@
 from plugins.get_cpu_load import get_cpu_load
 from plugins.get_time import get_time
+from plugins.get_battery_percentage import get_battery_percentage
 from nlp_tools import *
 from nlp_tools.get_parsed_input import get_parsed_input
 from models import *
@@ -15,7 +16,7 @@ class core:
     def initialize(self):
 
         # determine dictionary of possible tasks with their corresponding functions
-        self.possible_tasks = {'cpu': get_cpu_load, 'time': get_time, 'soteria': soteria, 'cancer': cancer_ml}
+        self.possible_tasks = {'cpu': get_cpu_load, 'time': get_time, 'soteria': soteria, 'cancer': cancer_ml, 'battery': get_battery_percentage}
 
         greetings = ["Hello. What can I help you with today?", "How can I assist you?", "What's up?"]
         greet_choice = random.choice(greetings)
