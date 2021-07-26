@@ -16,12 +16,17 @@ class core:
     def initialize(self):
 
         # determine dictionary of possible tasks with their corresponding functions
-        self.possible_tasks = {'cpu': get_cpu_load, 'time': get_time, 'soteria': soteria, 'cancer': cancer_ml, 'battery': get_battery_percentage}
+        self.possible_tasks = {'cpu': get_cpu_load, 'time': get_time, 'soteria': soteria, 'cancer': cancer_ml, 'battery': get_battery_percentage, 'stop': self.quit}
 
         greetings = ["Hello. What can I help you with today?", "How can I assist you?", "What's up?"]
         greet_choice = random.choice(greetings)
 
         play_text(greet_choice)
+
+    def quit(self):
+
+        play_text('See you later')
+        self.on = False
 
     def get_function(self):
 
@@ -46,6 +51,10 @@ class core:
                 task_func()
 
     def run(self):
-        self.initialize()
-        self.get_function()
+
+        self.on = True
+        
+        while self.on:
+            self.initialize()
+            self.get_function()
         
