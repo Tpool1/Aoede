@@ -1,12 +1,11 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 from play_text import play_text
 from plugins.utils.voice_to_date import voice_to_date
 from nlp_tools.get_parsed_input import get_parsed_input
 from nlp_tools.txt_num_dicts import placings_dict
 
-def workout_info():
+def get_workout_distance():
     df = pd.read_csv('data\\apple_health_export\\Workout.csv')
     
     play_text('What date was your workout?')
@@ -42,3 +41,7 @@ def workout_info():
         answer = placings_dict[answer]
 
         df = df.iloc[answer]
+
+    workout_distance = str(df['totalDistance']) + ' ' + str(df['totalDistanceUnit'])
+
+    play_text('Your workout was ' + workout_distance + ' long')
