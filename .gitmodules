@@ -1,0 +1,3 @@
+[submodule "src/models/apple_health/applehealthdata"]
+	path = src/models/apple_health/applehealthdata
+	url = https://github.com/tdda/applehealthdata.git
