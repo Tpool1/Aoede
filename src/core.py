@@ -37,13 +37,7 @@ class core:
 
         task_found = False
         while not task_found:
-            input_received = False
-            while not input_received:
-                try:
-                    user_input = get_parsed_input()
-                    input_received = True
-                except:
-                    play_text("I am having trouble hearing you. Please try again.")
+            user_input = get_parsed_input()
 
             for tag in list(user_input.values()):
                 if tag in list(self.possible_tasks.keys()):
