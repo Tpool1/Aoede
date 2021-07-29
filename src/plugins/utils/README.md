@@ -1,0 +1,1 @@
+Modules that do not have stand alone function for the assistant but rather are utilized by other plugins.
