@@ -5,8 +5,8 @@ from plugins.screenshot import screenshot
 
 from plugins.apple_health.get_workout_distance import get_workout_distance
 
-from nlp_tools import *
-from nlp_tools.get_parsed_input import get_parsed_input
+from packages import *
+from packages.get_parsed_input import get_parsed_input
 from models import *
 from play_text import play_text
 import random

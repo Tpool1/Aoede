@@ -1,4 +1,4 @@
-from nlp_tools import *
+from packages import *
 from core import core
 
 assistant = core()

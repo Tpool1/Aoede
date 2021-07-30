@@ -1,8 +1,8 @@
 from get_input import get_input
-from nlp_tools.partition import partition
-from nlp_tools.filterStops import filterStops
-from nlp_tools.stem import stem
-from nlp_tools.tag import tag
+from packages.partition import partition
+from packages.filterStops import filterStops
+from packages.stem import stem
+from packages.tag import tag
 
 def get_parsed_input():
     user_input = get_input()

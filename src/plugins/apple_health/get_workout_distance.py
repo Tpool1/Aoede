@@ -1,9 +1,9 @@
 import pandas as pd
 
 from play_text import play_text
-from nlp_tools.voice_to_date import voice_to_date
-from nlp_tools.get_parsed_input import get_parsed_input
-from nlp_tools.txt_num_dicts import placings_dict
+from packages.voice_to_date import voice_to_date
+from packages.get_parsed_input import get_parsed_input
+from packages.txt_num_dicts import placings_dict
 
 def get_workout_distance():
     df = pd.read_csv('data\\apple_health_export\\Workout.csv')

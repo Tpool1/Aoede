@@ -1,4 +1,5 @@
-def remove_breaks(self, val_list):
+
+def remove_breaks(val_list):
     i = 0
     for var in val_list: 
         new_var = var.replace('\n','')
