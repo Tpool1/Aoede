@@ -1,0 +1,1 @@
+Folder for non-dependencies (core will continue to function without it)
