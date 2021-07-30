@@ -45,4 +45,5 @@ def plot_heart_rate():
     y = list(df['value'])
 
     plt.plot(x, y)
+    play_text('The plot is opening on your screen now.')
     plt.show()
