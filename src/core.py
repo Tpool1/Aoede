@@ -7,6 +7,8 @@ from plugins.apple_health.get_workout_distance import get_workout_distance
 
 from packages import *
 from packages.get_parsed_input import get_parsed_input
+from packages.get_word_synonyms import get_word_synonyms
+
 from models import *
 from play_text import play_text
 import random
@@ -43,6 +45,13 @@ class core:
                 if tag in list(self.possible_tasks.keys()):
                     task_func = self.possible_tasks[tag]
                     task_found = True
+                else:
+                    # check if tag is a synonym of a word in possible_tasks keys
+                    word_synonyms = get_word_synonyms(tag)
+                    for syn in word_synonyms:
+                        if syn in list(self.possible_tasks.keys()):
+                            task_func = self.possible_tasks[syn]
+                            task_found = True
                 
             if not task_found:
                 play_text("I cannot identify what you want to do. Try again.")
