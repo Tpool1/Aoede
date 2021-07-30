@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from play_text import play_text
 from packages.voice_to_date import voice_to_date
@@ -31,4 +32,17 @@ def plot_heart_rate():
 
     df = df.loc[date]
 
-    print(df)
+    endDate_col = list(df['endDate'])
+
+    # get only the timestamp from each date
+    times = []
+    for date in endDate_col:
+        date = date.split()
+        time = date[1]
+        times.append(time)
+
+    x = times
+    y = list(df['value'])
+
+    plt.plot(x, y)
+    plt.show()
