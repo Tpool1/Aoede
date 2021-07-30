@@ -1,7 +1,7 @@
 import pandas as pd
 
 from play_text import play_text
-from plugins.utils.voice_to_date import voice_to_date
+from nlp_tools.voice_to_date import voice_to_date
 from nlp_tools.get_parsed_input import get_parsed_input
 from nlp_tools.txt_num_dicts import placings_dict
 
