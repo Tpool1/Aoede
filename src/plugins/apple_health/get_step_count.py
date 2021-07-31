@@ -2,8 +2,6 @@ import pandas as pd
 
 from play_text import play_text
 from packages.voice_to_date import voice_to_date
-from packages.get_parsed_input import get_parsed_input
-from packages.txt_num_dicts import placings_dict
 
 def get_step_count():
     df = pd.read_csv('data\\apple_health_export\\StepCount.csv')
