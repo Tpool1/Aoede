@@ -1,3 +1,4 @@
+from matplotlib.pyplot import get
 from plugins.get_cpu_load import get_cpu_load
 from plugins.get_time import get_time
 from plugins.get_battery_percentage import get_battery_percentage
@@ -6,6 +7,7 @@ from plugins.screenshot import screenshot
 from plugins.apple_health.get_workout_distance import get_workout_distance
 from plugins.apple_health.get_workout_calories import get_workout_calories
 from plugins.apple_health.plot_heart_rate import plot_heart_rate
+from plugins.apple_health.get_step_count import get_step_count
 
 from packages import *
 from packages.get_parsed_input import get_parsed_input
@@ -25,7 +27,8 @@ class core:
         # determine dictionary of possible tasks with their corresponding functions
         self.possible_tasks = {'cpu': get_cpu_load, 'time': get_time, 'soteria': soteria, 'cancer': cancer_ml, 
                                 'battery': get_battery_percentage, 'stop': self.quit, 'screenshot': screenshot,
-                                'distance': get_workout_distance, 'calorie': get_workout_calories, 'heart': plot_heart_rate}
+                                'distance': get_workout_distance, 'calorie': get_workout_calories, 'heart': plot_heart_rate,
+                                'step': get_step_count}
 
         greetings = ["Hello. What can I help you with today?", "How can I assist you?", "What's up?"]
         greet_choice = random.choice(greetings)
