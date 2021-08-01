@@ -1,4 +1,3 @@
-from matplotlib.pyplot import get
 from plugins.get_cpu_load import get_cpu_load
 from plugins.get_time import get_time
 from plugins.get_battery_percentage import get_battery_percentage
