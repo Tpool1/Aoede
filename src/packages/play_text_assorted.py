@@ -20,13 +20,13 @@ def play_text_assorted(text):
     word_syn_dict = {}
     for word in word_list:
 
-        # if block fails, word is not valid and can be ignored
+        # if block fails with type error, word is not valid and can be ignored
         try:
             synonyms = get_word_synonyms(word)
             syn_chosen = random.choice(synonyms)
 
             word_syn_dict[word] = syn_chosen
-        except:
+        except TypeError:
             pass
 
     i = 0
