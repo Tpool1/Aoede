@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import pyautogui
-from play_text import play_text
+from packages.play_textplay_textplay_textplay_text import play_text
 
 def screenshot():
 

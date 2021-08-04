@@ -1,4 +1,4 @@
-from get_input import get_input
+from packages.get_input import get_input
 from packages.partition import partition
 from packages.filterStops import filterStops
 from packages.stem import stem

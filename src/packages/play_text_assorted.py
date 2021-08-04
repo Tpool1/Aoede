@@ -1,4 +1,4 @@
-from play_text import play_text
+from packages.play_text import play_text
 from packages.partition import partition
 from packages.filterStops import filterStops
 from packages.stem import stem

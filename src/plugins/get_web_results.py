@@ -1,6 +1,6 @@
 from googlesearch import search
 from packages.get_parsed_input import get_parsed_input
-from play_text import play_text
+from packages.play_text import play_text
 
 def get_web_results():
     

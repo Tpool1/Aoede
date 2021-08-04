@@ -13,7 +13,7 @@ from packages.get_parsed_input import get_parsed_input
 from packages.get_word_synonyms import get_word_synonyms
 
 from models import *
-from play_text import play_text
+from packages.play_text import play_text
 import random
 
 from models.cancer_ml import cancer_ml

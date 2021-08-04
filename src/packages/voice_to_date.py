@@ -1,7 +1,7 @@
 from urllib.parse import urldefrag
 from packages.get_parsed_input import get_parsed_input
 from packages.txt_num_dicts import month_dict
-from play_text import play_text
+from packages.play_text import play_text
 import re
 
 # function to convert a date that is said verbally to numerical format (year-month-day) (Ex. 2021-07-23)

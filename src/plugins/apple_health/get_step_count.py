@@ -1,6 +1,6 @@
 import pandas as pd
 
-from play_text import play_text
+from packages.play_text import play_text
 from packages.voice_to_date import voice_to_date
 
 def get_step_count():

@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from play_text import play_text
+from packages.play_text import play_text
 from packages.voice_to_date import voice_to_date
 
 def plot_heart_rate():

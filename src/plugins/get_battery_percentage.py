@@ -1,5 +1,5 @@
 import psutil
-from play_text import play_text
+from packages.play_textplay_text import play_text
 
 def get_battery_percentage():
     battery = psutil.sensors_battery()
