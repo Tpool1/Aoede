@@ -1,4 +1,5 @@
 import os
+from tensorflow.keras.preprocessing.text import Tokenizer
 
 data_dir = 'data\\nlp_datasets\\gutenberg'
 file_list = os.listdir(data_dir)
@@ -11,7 +12,13 @@ for file in file_list:
     i = i + 1
 
 
-files = ''
+files = []
 for path in file_list:
     file = open(path, 'r').read()
-    files = files + file
+    files.append(file)
+
+tokenizer = Tokenizer()
+
+tokenizer.fit_on_texts(files)
+
+print(len(tokenizer.word_index))
