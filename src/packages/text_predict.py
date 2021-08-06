@@ -75,11 +75,11 @@ class text_predict:
 
             model.fit(x_train, y_train, batch_size=16, epochs=12)
 
-            model.save('keras_word_prediction_model.h5')
+            model.save('data\\saved_models\\text_prediction\\keras_word_prediction_model.h5')
 
         else:
 
-            model = keras.models.load_model('keras_word_prediction_model.h5')
+            model = keras.models.load_model('data\\saved_models\\text_prediction\\keras_word_prediction_model.h5')
 
         return model
 
