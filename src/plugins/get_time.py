@@ -1,5 +1,5 @@
 from datetime import datetime
-from packages.play_textplay_text import play_text
+from packages.play_text import play_text
 
 def get_time():
     time = datetime.now()
