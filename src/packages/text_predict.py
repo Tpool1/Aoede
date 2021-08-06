@@ -9,6 +9,8 @@ from sklearn.model_selection import train_test_split
 # number of words model with use for training data
 word_num = 6
 
+load_model = True
+
 data_dir = 'data\\nlp_datasets\\gutenberg'
 file_list = os.listdir(data_dir)
 
@@ -53,24 +55,28 @@ for text in data:
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
-#input = keras.Input(shape=(6))
+if not load_model:
 
-#x = layers.Dense(6, activation='relu')(input)
-#x = layers.Dense(3, activation='relu')(x)
+    input = keras.Input(shape=(6))
 
-#output = layers.Dense(1, activation='linear')(x)
+    x = layers.Dense(6, activation='relu')(input)
+    x = layers.Dense(3, activation='relu')(x)
 
-#model = keras.Model(inputs=input, outputs=output)
+    output = layers.Dense(1, activation='linear')(x)
 
-#model.compile(optimizer='sgd', loss='mean_squared_error', metrics=['accuracy'])
+    model = keras.Model(inputs=input, outputs=output)
 
-#model.fit(x_train, y_train, batch_size=16, epochs=12)
+    model.compile(optimizer='sgd', loss='mean_squared_error', metrics=['accuracy'])
 
-#model.save('keras_word_prediction_model.h5')
+    model.fit(x_train, y_train, batch_size=16, epochs=12)
 
-model = keras.models.load_model('keras_word_prediction_model.h5')
+    model.save('keras_word_prediction_model.h5')
+    
+else:
 
-#model.evaluate(x_test, y_test)
+    model = keras.models.load_model('keras_word_prediction_model.h5')
+
+model.evaluate(x_test, y_test)
 
 def predict(text, model):
     text = [text]
