@@ -53,19 +53,34 @@ for text in data:
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
-input = keras.Input(shape=(6))
+#input = keras.Input(shape=(6))
 
-x = layers.Dense(6, activation='relu')(input)
-x = layers.Dense(3, activation='relu')(x)
+#x = layers.Dense(6, activation='relu')(input)
+#x = layers.Dense(3, activation='relu')(x)
 
-output = layers.Dense(1, activation='linear')(x)
+#output = layers.Dense(1, activation='linear')(x)
 
-model = keras.Model(inputs=input, outputs=output)
+#model = keras.Model(inputs=input, outputs=output)
 
-model.compile(optimizer='sgd', loss='mean_squared_error', metrics=['accuracy'])
+#model.compile(optimizer='sgd', loss='mean_squared_error', metrics=['accuracy'])
 
-model.fit(x_train, y_train, batch_size=16, epochs=12)
+#model.fit(x_train, y_train, batch_size=16, epochs=12)
 
-model.save('keras_word_prediction_model.h5')
+#model.save('keras_word_prediction_model.h5')
 
-model.evaluate(x_test, y_test)
+model = keras.models.load_model('keras_word_prediction_model.h5')
+
+#model.evaluate(x_test, y_test)
+
+def predict(text, model):
+    text = [text]
+    text_sequence = list(tokenizer.texts_to_sequences(text))
+
+    prediction = model.predict(text_sequence)[0][0]
+    prediction = round(prediction, 0)
+
+    text_prediction = tokenizer.sequences_to_texts([[prediction]])
+
+    return text_prediction
+
+print(predict("my spirit and your's therefore acknowledge", model))
