@@ -66,6 +66,7 @@ class text_predict:
 
             x = layers.Dense(6, activation='relu')(input)
             x = layers.Dense(3, activation='relu')(x)
+            x = layers.Dense(2, activation='relu')(x)
 
             output = layers.Dense(1, activation='linear')(x)
 
@@ -73,7 +74,7 @@ class text_predict:
 
             model.compile(optimizer='sgd', loss='mean_squared_error', metrics=['accuracy'])
 
-            model.fit(x_train, y_train, batch_size=16, epochs=12)
+            model.fit(x_train, y_train, batch_size=16, epochs=20)
 
             model.save('data\\saved_models\\text_prediction\\keras_word_prediction_model.h5')
 
