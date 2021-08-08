@@ -7,14 +7,14 @@ from sklearn.model_selection import train_test_split
 
 class text_predict:
     
-    def __init__(self, word_num, load_model):
-
-        # number of words model with use for training data
-        self.word_num = word_num
+    def __init__(self, load_model=True):
 
         self.load_model = load_model
 
-    def get_model(self):
+    def get_model(self, word_num):
+
+        # number of words model with use for training data
+        self.word_num = word_num
 
         data_dir = 'data\\nlp_datasets\\gutenberg'
         file_list = os.listdir(data_dir)
@@ -85,7 +85,12 @@ class text_predict:
 
     def predict(self, text):
 
-        model = self.get_model()
+        # get num of words in text
+        word_list = text.split()
+
+        num_words = len(word_list)
+
+        model = self.get_model(num_words)
 
         text = [text]
         text_sequence = list(self.tokenizer.texts_to_sequences(text))
