@@ -13,7 +13,7 @@ class text_predict:
         self.load_model = load_model
         self.target_num = target_num
 
-    def get_model(self, word_num, target_num):
+    def get_model(self, word_num):
 
         # number of words model with use for training data
         self.word_num = word_num
@@ -80,7 +80,7 @@ class text_predict:
 
             model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
 
-            model.fit(x_train, y_train, batch_size=16, epochs=20)
+            model.fit(x_train, y_train, batch_size=16, epochs=10)
 
             model.save('data\\saved_models\\text_prediction\\keras_word_prediction_model.h5')
 
@@ -97,7 +97,7 @@ class text_predict:
 
         num_words = len(word_list)
 
-        model = self.get_model(num_words, self.target_num)
+        model = self.get_model(num_words)
 
         text = [text]
         text_sequence = list(self.tokenizer.texts_to_sequences(text))
