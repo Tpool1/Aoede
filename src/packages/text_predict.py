@@ -1,4 +1,5 @@
 import os
+from keras_preprocessing import text
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.preprocessing.text import Tokenizer
@@ -7,11 +8,12 @@ from sklearn.model_selection import train_test_split
 
 class text_predict:
     
-    def __init__(self, load_model=True):
+    def __init__(self, load_model=True, target_num=1):
 
         self.load_model = load_model
+        self.target_num = target_num
 
-    def get_model(self, word_num):
+    def get_model(self, word_num, target_num):
 
         # number of words model with use for training data
         self.word_num = word_num
@@ -39,8 +41,8 @@ class text_predict:
 
         data = np.asarray(data, dtype=object)
 
-        x = np.empty(shape=(852250, 6), dtype=int)
-        y = np.empty(shape=(852250,), dtype=int)
+        x = np.empty(shape=(852253, self.word_num), dtype=int)
+        y = np.empty(shape=(852253, self.target_num), dtype=int)
 
         i = 0
         j = self.word_num
@@ -51,9 +53,13 @@ class text_predict:
 
                 x[i:j] = x_single
 
-                y_single = text[j]
-
-                y[i] = y_single
+                y_single = text[j:self.target_num+j]
+                    
+                try:
+                    y[i] = y_single
+                except Exception as e:
+                    print(e)
+                    print(str(y_single), 'failed')
 
                 i = i + 1
                 j = j + 1
@@ -62,17 +68,17 @@ class text_predict:
 
         if not self.load_model:
 
-            input = keras.Input(shape=(6))
+            input = keras.Input(shape=(self.word_num))
 
             x = layers.Dense(6, activation='relu')(input)
             x = layers.Dense(3, activation='relu')(x)
             x = layers.Dense(2, activation='relu')(x)
 
-            output = layers.Dense(1, activation='linear')(x)
+            output = layers.Dense(self.target_num, activation='linear')(x)
 
             model = keras.Model(inputs=input, outputs=output)
 
-            model.compile(optimizer='sgd', loss='mean_squared_error', metrics=['accuracy'])
+            model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
 
             model.fit(x_train, y_train, batch_size=16, epochs=20)
 
@@ -91,14 +97,20 @@ class text_predict:
 
         num_words = len(word_list)
 
-        model = self.get_model(num_words)
+        model = self.get_model(num_words, self.target_num)
 
         text = [text]
         text_sequence = list(self.tokenizer.texts_to_sequences(text))
 
-        prediction = model.predict(text_sequence)[0][0]
-        prediction = round(prediction, 0)
+        prediction = model.predict(text_sequence)[0]
 
-        text_prediction = self.tokenizer.sequences_to_texts([[prediction]])
+        i = 0
+        for pred in prediction:
+            pred = round(pred, 0)
+            prediction[i] = pred
+
+            i = i + 1
+
+        text_prediction = self.tokenizer.sequences_to_texts([prediction])
 
         return text_prediction
