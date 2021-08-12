@@ -8,12 +8,11 @@ from sklearn.model_selection import train_test_split
 
 class text_predict:
     
-    def __init__(self, load_model=True, target_num=1):
+    def __init__(self, load_model=True):
 
         self.load_model = load_model
-        self.target_num = target_num
 
-    def get_model(self, word_num):
+    def get_model(self, word_num, target_num):
 
         # number of words model with use for training data
         self.word_num = word_num
@@ -42,7 +41,7 @@ class text_predict:
         data = np.asarray(data, dtype=object)
 
         x = np.empty(shape=(852253, self.word_num), dtype=int)
-        y = np.empty(shape=(852253, self.target_num), dtype=int)
+        y = np.empty(shape=(852253, target_num), dtype=int)
 
         i = 0
         j = self.word_num
@@ -53,7 +52,7 @@ class text_predict:
 
                 x[i:j] = x_single
 
-                y_single = text[j:self.target_num+j]
+                y_single = text[j:target_num+j]
                     
                 try:
                     y[i] = y_single
@@ -90,14 +89,14 @@ class text_predict:
 
         return model
 
-    def predict(self, text):
+    def predict(self, text, target_num=1):
 
         # get num of words in text
         word_list = text.split()
 
         num_words = len(word_list)
 
-        model = self.get_model(num_words)
+        model = self.get_model(num_words, target_num)
 
         text = [text]
         text_sequence = list(self.tokenizer.texts_to_sequences(text))
