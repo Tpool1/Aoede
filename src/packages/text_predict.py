@@ -80,7 +80,7 @@ class text_predict:
 
             model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
 
-            model.fit(x_train, y_train, batch_size=16, epochs=10)
+            model.fit(x_train, y_train, batch_size=64, epochs=10)
 
             model.save('data\\saved_models\\text_prediction\\keras_word_prediction_model.h5')
 
