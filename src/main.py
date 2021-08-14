@@ -1,4 +1,3 @@
-from core import core
+from ui.start import start
 
-assistant = core()
-assistant.run()
+start()
