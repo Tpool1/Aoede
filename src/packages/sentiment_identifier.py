@@ -23,9 +23,11 @@ class sentiment_identifier:
 
         x = self.tokenizer.texts_to_sequences(text_col)
         
+        # pad x data to retain standard dimension
         x = keras.preprocessing.sequence.pad_sequences(x, padding='post')
 
-        y = df[list(df.columns)[0]].to_numpy()
+        # get first column as y data
+        y = df[list(df.columns)[0]]
 
         x_train, self.x_test, y_train, self.y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
@@ -52,6 +54,28 @@ class sentiment_identifier:
 
         return model
 
+    def get_distribution(self, series):
+
+        series_len = len(series)
+        
+        counts_dict = series.value_counts().to_dict()
+
+        percent_list = []
+        for count in list(counts_dict.values()):
+            percent = (count/series_len)
+            percent = round(percent, 0)
+            percent_list.append(percent)
+
+        count_keys = list(counts_dict.keys())
+
+        percent_dict = dict(zip(count_keys, percent_list))
+
+        return percent_dict
+    
+    def evaluate(self, model):
+        model.evalutate(self.x_test)
+        print(self.y_test)
+
     def get_sentiment(self, text):
 
         model = self.get_model()
@@ -69,6 +93,3 @@ class sentiment_identifier:
                 sent.append(0)
 
         print(model.predict(text))
-
-identifer = sentiment_identifier()
-identifer.get_sentiment('If you do not have it on my desk by tomorrow, you are out of here.')
