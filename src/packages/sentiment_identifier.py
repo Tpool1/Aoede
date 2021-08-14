@@ -6,6 +6,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
 
 class sentiment_identifier:
 
@@ -30,6 +31,10 @@ class sentiment_identifier:
         y = df[list(df.columns)[0]]
 
         x_train, self.x_test, y_train, self.y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+
+        scaler = MinMaxScaler()
+        scaler.fit_transform(x_train)
+        scaler.fit_transform(self.x_test)
 
         if not self.load_model:
             input = keras.Input(shape=(x_train.shape[1]))
@@ -92,4 +97,4 @@ class sentiment_identifier:
             for i in range(zeros_required):
                 sent.append(0)
 
-        print(model.predict(text))
+        return model.predict(text)
