@@ -5,6 +5,7 @@ from tensorflow.keras import layers
 from tensorflow.keras.preprocessing.text import Tokenizer
 import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
 
 class text_predict:
     
@@ -65,6 +66,10 @@ class text_predict:
 
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
 
+        scaler = MinMaxScaler()
+        scaler.fit_transform(x_train)
+        scaler.fit_transform(x_test)
+
         if not self.load_model:
 
             input = keras.Input(shape=(self.word_num))
@@ -73,13 +78,13 @@ class text_predict:
             x = layers.Dense(3, activation='relu')(x)
             x = layers.Dense(2, activation='relu')(x)
 
-            output = layers.Dense(self.target_num, activation='linear')(x)
+            output = layers.Dense(target_num, activation='linear')(x)
 
             model = keras.Model(inputs=input, outputs=output)
 
             model.compile(optimizer='adam', loss='mean_squared_error', metrics=['accuracy'])
 
-            model.fit(x_train, y_train, batch_size=64, epochs=10)
+            model.fit(x_train, y_train, batch_size=64, epochs=30)
 
             model.save('data\\saved_models\\text_prediction\\keras_word_prediction_model.h5')
 
