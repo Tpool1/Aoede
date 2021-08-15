@@ -8,14 +8,14 @@ class Api:
         self.started = False
     
     def start(self):
-        assistant = core()
-        assistant.run()
+        self.assistant = core()
+        self.assistant.run()
 
     def set_window(self, window):
         self._window = window
 
     def pause(self):
-        self.paused = True
+        self.assistant.quit()
 
     def quit(self):
         self._window.destroy()
