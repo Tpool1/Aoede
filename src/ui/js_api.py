@@ -4,8 +4,6 @@ class Api:
 
     def __init__(self):
         self._window = None
-        self.paused = False
-        self.started = False
     
     def start(self):
         self.assistant = core()
