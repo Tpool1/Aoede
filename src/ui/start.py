@@ -1,11 +1,8 @@
 import webview
-from core import core
-
-def on_loaded():
-    assistant = core()
-    assistant.run()
+from ui.js_api import Api
 
 def start():
-    window = webview.create_window('Asclepius', url='../assets/index.html')
-    window.loaded += on_loaded
+    api = Api()
+    window = webview.create_window('Asclepius', url='../assets/index.html', js_api=api)
+    api.set_window(window)
     webview.start()
