@@ -1,5 +1,6 @@
 import speech_recognition as sr
 from packages.play_text import play_text
+from packages.write_conversation_data import write_conversation_data
 
 def get_input():
 
@@ -18,6 +19,8 @@ def get_input():
             input_received = True
         except:
             play_text("I am having trouble hearing you. Please try again.")
+
+    write_conversation_data(text)
 
     return text
     
