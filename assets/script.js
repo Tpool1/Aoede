@@ -11,5 +11,5 @@ function start() {
 }
 
 function clear_user_data() {
-    pywebview.clear_user_data()
+    pywebview.api.clear_user_data()
 }

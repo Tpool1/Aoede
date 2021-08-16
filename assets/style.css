@@ -64,10 +64,10 @@ a {
 }
 
 .menu {
-    margin: auto;
-    padding: 10px;
-    overflow: hidden;
-    background-color: black;
+  margin: auto;
+  padding: 10px;
+  overflow: hidden;
+  background-color: black;
 }
 
 .button {
@@ -88,4 +88,8 @@ a {
 .button:hover {
   background-color: #38c2b7d2;
   color: white;
+}
+
+.clear-data {
+  margin-top: 10px;
 }
