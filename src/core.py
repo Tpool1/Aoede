@@ -50,12 +50,15 @@ class core:
                     task_func = self.possible_tasks[tag]
                     task_found = True
                 else:
-                    # check if tag is a synonym of a word in possible_tasks keys
-                    word_synonyms = get_word_synonyms(tag)
-                    for syn in word_synonyms:
-                        if syn in list(self.possible_tasks.keys()):
-                            task_func = self.possible_tasks[syn]
-                            task_found = True
+                    try:
+                        # check if tag is a synonym of a word in possible_tasks keys
+                        word_synonyms = get_word_synonyms(tag)
+                        for syn in word_synonyms:
+                            if syn in list(self.possible_tasks.keys()):
+                                task_func = self.possible_tasks[syn]
+                                task_found = True
+                    except Exception as e:
+                        print(e)
                 
             if not task_found:
                 play_text("I cannot identify what you want to do. Try again.")
