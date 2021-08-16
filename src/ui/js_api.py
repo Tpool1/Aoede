@@ -1,4 +1,5 @@
 from core import core
+from packages.clear_user_data import clear_user_data
 
 class Api:
 
@@ -17,3 +18,6 @@ class Api:
 
     def quit(self):
         self._window.destroy()
+
+    def clear_user_data(self):
+        clear_user_data()

@@ -9,3 +9,7 @@ function quit() {
 function start() {
     pywebview.api.start()
 }
+
+function clear_user_data() {
+    pywebview.clear_user_data()
+}
