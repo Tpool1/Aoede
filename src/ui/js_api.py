@@ -21,3 +21,4 @@ class Api:
 
     def clear_user_data(self):
         clear_user_data()
+        
