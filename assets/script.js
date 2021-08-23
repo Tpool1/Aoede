@@ -13,3 +13,9 @@ function start() {
 function clear_user_data() {
     pywebview.api.clear_user_data()
 }
+
+function add_profile() {
+    var name = document.getElementById("user-box").value;
+
+    pywebview.api.add_profile(name);
+}
