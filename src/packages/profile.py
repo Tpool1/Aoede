@@ -11,12 +11,14 @@ class profile(core):
         except FileExistsError:
             pass
 
-        self.user_data = os.listdir(self.data_path)
+        # make empty conversation data file for profile
+        open(os.path.join(self.data_path, "conversations.txt"), mode="a").close()
+
+        with open(os.path.join(self.data_path, "info.txt"), mode='w') as f:
+            f.write("Name: " + self.name)
 
     def make_data_path(self):
         root = "data\\profiles"
         self.data_path = os.path.join(root, self.name)
 
         os.mkdir(self.data_path)
-
-        os.mkdir(os.path.join(self.data_path, "conversations.txt"))
