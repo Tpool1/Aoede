@@ -1,6 +1,7 @@
 from core import core
 from packages.clear_user_data import clear_user_data
 from packages.profile import profile
+from packages.load_profiles import load_profiles
 
 class Api:
 
@@ -26,3 +27,13 @@ class Api:
     def add_profile(self, name):
         p = profile(name)
         
+    def load_profiles(self):
+        profiles = load_profiles()
+
+        names = []
+        for profile in profiles:
+            names.append(profile.name)
+
+        names = str(names)
+
+        return names

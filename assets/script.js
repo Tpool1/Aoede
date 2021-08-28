@@ -19,3 +19,9 @@ function add_profile() {
 
     pywebview.api.add_profile(name);
 }
+
+function load_profiles() {
+    pywebview.api.load_profiles().then(function(names) {
+        document.querySelector('p').innerHTML = names;
+    });
+}
