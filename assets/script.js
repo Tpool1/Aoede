@@ -48,6 +48,11 @@ function load_profiles() {
             e.innerHTML = name;
             e.className = "profile-name";
             document.body.appendChild(e);
+
+            // create and place new button element to show conversations for each name
+            const b = document.createElement('button');
+            b.innerHTML = "Conversations";
+            document.body.appendChild(b);
         }
     });
 }
