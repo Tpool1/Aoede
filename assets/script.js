@@ -21,7 +21,17 @@ function add_profile() {
 }
 
 function load_profiles() {
+
+    const blocked_chars = ['[', ']', ',', /["']/g];
     pywebview.api.load_profiles().then(function(names) {
+
+        for (let i=0; i<blocked_chars.length; i++) {
+            if (blocked_chars[i] == ",") {
+                names = names.replace(blocked_chars[i], " ");
+            } else {
+                names = names.replace(blocked_chars[i], "");
+            }
+        }
         document.querySelector('p').innerHTML = names;
     });
 }
