@@ -3,6 +3,8 @@ from packages.clear_user_data import clear_user_data
 from packages.profile import profile
 from packages.load_profiles import load_profiles
 
+import os
+
 class Api:
 
     def __init__(self):
@@ -37,3 +39,17 @@ class Api:
         names = str(names)
 
         return names
+
+    def load_conversation(self, name):
+        root = "data\\profiles"
+        profile_path = os.path.join(root, name)
+        convo_path = os.path.join(profile_path, "conversations.txt")
+
+        f = open(convo_path, "r")
+        lines = f.readlines()
+        f.close()
+
+        lines = str(lines)
+        
+        return lines
+        
