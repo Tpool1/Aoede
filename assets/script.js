@@ -32,6 +32,13 @@ function load_profiles() {
                 names = names.replace(blocked_chars[i], "");
             }
         }
-        document.querySelector('p').innerHTML = names;
+        const name_array = names.split(" ");
+
+        for (let i=0; i<name_array.length; i++) {
+            var name = name_array[i];
+            const e = document.createElement('p');
+            e.innerHTML = name;
+            document.body.appendChild(e);
+        }
     });
 }
