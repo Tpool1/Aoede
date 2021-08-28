@@ -46,6 +46,7 @@ function load_profiles() {
             // create and place new p element for each name
             const e = document.createElement('p');
             e.innerHTML = name;
+            e.className = "profile-name";
             document.body.appendChild(e);
         }
     });

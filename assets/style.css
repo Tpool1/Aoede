@@ -93,3 +93,7 @@ a {
 .clear-data {
   margin-top: 10px;
 }
+
+.profile-name {
+  font-family: Arial, Helvetica, sans-serif;
+}
