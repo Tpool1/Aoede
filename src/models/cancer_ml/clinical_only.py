@@ -2,7 +2,7 @@ from tensorflow import keras
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.metrics import MeanIoU
 
-class clinical_only():
+class clinical_only:
 
     def __init__(self, load_model=True):
         self.load_model = load_model
