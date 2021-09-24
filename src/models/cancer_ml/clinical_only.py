@@ -31,7 +31,7 @@ class clinical_only:
     def get_model(self, X_train=None, y_train=None, epochs=None, batch_size=None):
         
         if self.load_model:
-            self.model = keras.models.load_model('data\\saved_models\\text_prediction\\keras_clinical_only_model.h5')
+            self.model = keras.models.load_model('data\\saved_models\\keras_clinical_only_model.h5')
         else:
             self.model = self.train_model(X_train, y_train, epochs, batch_size)
 
