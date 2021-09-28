@@ -1,4 +1,3 @@
-from numpy.lib.type_check import imag
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
