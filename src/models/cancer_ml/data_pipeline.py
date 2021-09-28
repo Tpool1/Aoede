@@ -7,27 +7,7 @@ import numpy as np
 from models.cancer_ml.image_tools.import_numpy import import_numpy
 from models.cancer_ml.tokenize_dataset import tokenize_dataset
 
-class clinical_only:
-    def __init__(self):
-        self.X_train = None
-        self.X_test = None
-        self.X_val = None
-
-        self.y_train = None
-        self.y_test = None
-        self.y_val = None
-
-class image_clinical:
-    def __init__(self):
-        self.X_train = None
-        self.X_test = None
-        self.X_val = None
-
-        self.y_train = None
-        self.y_test = None
-        self.y_val = None
-
-class image_only:
+class data_pod:
     def __init__(self):
         self.X_train = None
         self.X_test = None
@@ -44,9 +24,9 @@ class data_pipeline:
         self.image_path = image_path
         self.target = target
 
-        self.clinical_only = clinical_only()
-        self.image_clinical = image_clinical()
-        self.image_only = image_only()
+        self.clinical_only = data_pod()
+        self.image_clinical = data_pod()
+        self.image_only = data_pod()
 
     def load_data(self):
         self.df = pd.read_csv(self.clinical_path)
