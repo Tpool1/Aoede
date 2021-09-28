@@ -23,7 +23,7 @@ class data_pipeline:
         self.image_path = image_path
         self.target = target
 
-        self.clinical_only = data_pod()
+        self.only_clinical = data_pod()
         self.image_clinical = data_pod()
         self.image_only = data_pod()
 
@@ -47,8 +47,6 @@ class data_pipeline:
         self.partition_clinical_only_data()
         self.partition_image_clinical_data()
         self.partition_image_only_data()
-
-        print('task completed')
 
     def concatenate_image_clinical(self):
 
@@ -80,12 +78,12 @@ class data_pipeline:
         X_test = min_max_scaler.fit_transform(X_test)
         X_val = min_max_scaler.fit_transform(X_val)
 
-        self.clinical_only.X_train = X_train
-        self.clinical_only.X_test = X_test
-        self.clinical_only.y_train = y_train
-        self.clinical_only.y_test = y_test
-        self.clinical_only.X_val = X_val
-        self.clinical_only.y_val = y_val
+        self.only_clinical.X_train = X_train
+        self.only_clinical.X_test = X_test
+        self.only_clinical.y_train = y_train
+        self.only_clinical.y_test = y_test
+        self.only_clinical.X_val = X_val
+        self.only_clinical.y_val = y_val
 
     def partition_image_clinical_data(self):
 
