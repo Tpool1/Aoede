@@ -4,3 +4,6 @@
 [submodule "src/plugins/apple_health/applehealthdata"]
 	path = src/plugins/apple_health/applehealthdata
 	url = https://github.com/tdda/applehealthdata.git
+[submodule "src/models/cancer_ml"]
+	path = src/models/cancer_ml
+	url = https://github.com/Tpool1/Cancer_ML.git
