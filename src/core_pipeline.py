@@ -1,3 +1,3 @@
-import plugins
-import packages
-import models
+from plugins import *
+from packages import *
+from models import *
