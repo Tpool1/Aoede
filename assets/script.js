@@ -56,24 +56,34 @@ function load_profiles() {
 
         var name_array = parse_imported_list(names);
 
+        var profile_elements = document.getElementsByClassName("profile-name");
+
+        var profile_names = [];
+        for (let i=0; i<profile_elements.length; i++) {
+            profile_names[i] = profile_elements[i].innerHTML;
+        }
+
         for (let i=0; i<name_array.length; i++) {
             var name = name_array[i];
 
-            // capitalize first letter of name
-            var cap_name = name.charAt(0).toUpperCase() + name.slice(1);
+            // do not display the same profile name multiple times
+            if (!(profile_names.includes(name))) {
+                // capitalize first letter of name
+                var cap_name = name.charAt(0).toUpperCase() + name.slice(1);
 
-            // create and place new p element for each name
-            const e = document.createElement('p');
-            e.innerHTML = cap_name;
-            e.className = "profile-name";
-            document.body.appendChild(e);
+                // create and place new p element for each name
+                const e = document.createElement('p');
+                e.innerHTML = cap_name;
+                e.className = "profile-name";
+                document.body.appendChild(e);
 
-            // create and place new button element to show conversations for each name
-            const b = document.createElement('button');
-            b.innerHTML = "Conversations";
-            b.className = "conversation-button";
-            b.onclick = function() { load_conversation(name); };
-            document.body.appendChild(b);
+                // create and place new button element to show conversations for each name
+                const b = document.createElement('button');
+                b.innerHTML = "Conversations";
+                b.className = "conversation-button";
+                b.onclick = function() { load_conversation(name); };
+                document.body.appendChild(b);
+            }      
         }
     });
 
