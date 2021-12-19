@@ -8,7 +8,6 @@ from plugins.apple_health.get_workout_calories import get_workout_calories
 from plugins.apple_health.plot_heart_rate import plot_heart_rate
 from plugins.apple_health.get_step_count import get_step_count
 
-from packages import *
 from packages.get_parsed_input import get_parsed_input
 from packages.get_word_synonyms import get_word_synonyms
 
