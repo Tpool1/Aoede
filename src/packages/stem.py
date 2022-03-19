@@ -1,7 +1,9 @@
+import nltk
 from nltk.stem import WordNetLemmatizer
 
 # function to extract primitive meaning of words
 def stem(filtered_list):
+    nltk.download('omw-1.4')
     stemmer = WordNetLemmatizer()
     
     stemmed_words = []
