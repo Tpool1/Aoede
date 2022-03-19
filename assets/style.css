@@ -97,3 +97,8 @@ a {
 .profile-name {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+a {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
