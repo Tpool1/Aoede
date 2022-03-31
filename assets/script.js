@@ -88,16 +88,3 @@ function load_profiles() {
     });
 
 }
-
-function make_widgets() {
-    const widgets = ["Isolation Forest Outlier Detection", "K-Means Clustering"];
-
-    for (let i=0; i<widgets.length; i++) {
-        var widget_name = widgets[i];
-
-        var widget_name_button = document.createElement('button');
-        widget_name_button.innerHTML = widget_name;
-        widget_name_button.className = "button";
-        document.body.append(widget_name_button);
-    }
-}
